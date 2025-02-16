@@ -2,6 +2,7 @@ package controllers;
 
 import entities.Comment;
 import entities.Post;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,6 +17,7 @@ import javafx.stage.Stage;
 import services.PostService;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class PostCrud {
     PostService postService;
@@ -61,8 +63,46 @@ public class PostCrud {
     @FXML
     private TextField titleTF;
 
+    private boolean validateForm() {
+        String title = titleTF.getText();
+        String content = contentTF.getText();
+        String author = authorTF.getText();
+        String likes = likesTF.getText();
+        String dislikes = dislikesTF.getText();
+        if (title.isEmpty() || content.isEmpty() || author.isEmpty() || likes.isEmpty() || dislikes.isEmpty() || cdateDP.getValue() == null) {
+            showAlert("Error", "Validation Error", "All fields must be filled.");
+            return false;
+        }
+        if (title.length() < 5) {
+            showAlert("Error", "Validation Error", "Title must be at least 5 characters.");
+            return false;
+        }
+        if (content.length() < 8) {
+            showAlert("Error", "Validation Error", "Content must be at least 8 characters.");
+            return false;
+        }
+        if (!likes.matches("\\d+") || !dislikes.matches("\\d+")) {
+            showAlert("Error", "Validation Error", "Likes and Dislikes must be numeric.");
+            return false;
+        }
+        if (cdateDP.getValue() == null || cdateDP.getValue().isAfter(LocalDate.now())) {
+            showAlert("Error", "Validation Error", "Please select a valid date.");
+            return false;
+        }
+        return true;
+    }
+
+    private void showAlert(String title, String header, String content) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
     @FXML
     void addPost(ActionEvent event) {
+        if (!validateForm()) return;
         try {
             this.postService.create(new Post(
                     titleTF.getText(),
@@ -80,6 +120,11 @@ public class PostCrud {
             this.authorTF.clear();
             this.titleTF.clear();
             this.cdateDP.getEditor().clear();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText(null);
+            alert.setContentText("Post created successfully!");
+            alert.showAndWait();
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -87,27 +132,46 @@ public class PostCrud {
             alert.setContentText(e.getMessage());
             alert.showAndWait();
         }
-
-
     }
 
     @FXML
     void deletePost(ActionEvent event) {
         Post selectedPost = postTV.getSelectionModel().getSelectedItem();
-        if(selectedPost != null) {
-            try {
-                this.postService.delete(selectedPost);
-                ObservableList<Post> obs = FXCollections.observableArrayList(this.postService.readAll());
-                postTV.setItems(obs);
-            } catch (Exception e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("delete post failed");
-                alert.setContentText(e.getMessage());
-                alert.showAndWait();
-            }
+
+        if (selectedPost == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("No Selection");
+            alert.setHeaderText(null);
+            alert.setContentText("Please select a post to delete.");
+            alert.showAndWait();
+            return;
         }
 
+        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmAlert.setTitle("Confirm Deletion");
+        confirmAlert.setHeaderText("Are you sure you want to delete this post?");
+        confirmAlert.setContentText("This will also delete all associated comments.");
+
+        if (confirmAlert.showAndWait().get() == ButtonType.OK) {
+            try {
+                postService.delete(selectedPost);
+
+                ObservableList<Post> obs = FXCollections.observableArrayList(postService.readAll());
+                postTV.setItems(obs);
+
+                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                successAlert.setTitle("Success");
+                successAlert.setHeaderText(null);
+                successAlert.setContentText("Post deleted successfully!");
+                successAlert.showAndWait();
+            } catch (Exception e) {
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                errorAlert.setTitle("Deletion Error");
+                errorAlert.setHeaderText("Could not delete the post");
+                errorAlert.setContentText(e.getMessage());
+                errorAlert.showAndWait();
+            }
+        }
     }
 
     @FXML
@@ -128,6 +192,11 @@ public class PostCrud {
                 stage.close();
                 stage.setScene(scene);
                 stage.show();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText(null);
+                alert.setContentText("Comments interface loaded successfully!");
+                alert.showAndWait();
             } catch (Exception e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
@@ -158,6 +227,11 @@ public class PostCrud {
                 likesTF.clear();
                 dislikesTF.clear();
                 cdateDP.getEditor().clear();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText(null);
+                alert.setContentText("Post updated successfully!");
+                alert.showAndWait();
             } catch (Exception e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
