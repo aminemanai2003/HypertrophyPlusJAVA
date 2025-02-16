@@ -17,7 +17,7 @@ public class CommentService implements IService<Comment> {
 
     @Override
     public void create(Comment comment) throws SQLException {
-        String query = "INSERT INTO Comment (post_id, author, content, created_at) VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO comment (post_id, author, content, created_at) VALUES (?, ?, ?, ?)";
         try (PreparedStatement ps = cnx.prepareStatement(query)) {
             ps.setInt(1, comment.getPostId());  // Link comment to a post
             ps.setString(2, comment.getAuthor());
@@ -29,7 +29,7 @@ public class CommentService implements IService<Comment> {
 
     @Override
     public void update(Comment comment) throws SQLException {
-        String query = "UPDATE Comment SET post_id = ?, author = ?, content = ?, created_at = ? WHERE id = ?";
+        String query = "UPDATE comment SET post_id = ?, author = ?, content = ?, created_at = ? WHERE id = ?";
         try (PreparedStatement ps = cnx.prepareStatement(query)) {
             ps.setInt(1, comment.getPostId());  // Ensure the post_id is updated correctly
             ps.setString(2, comment.getAuthor());
@@ -42,7 +42,7 @@ public class CommentService implements IService<Comment> {
 
     @Override
     public void delete(Comment comment) throws SQLException {
-        String query = "DELETE FROM Comment WHERE id = ?";
+        String query = "DELETE FROM comment WHERE id = ?";
         try (PreparedStatement ps = cnx.prepareStatement(query)) {
             ps.setInt(1, comment.getId());
             ps.executeUpdate();
@@ -52,7 +52,7 @@ public class CommentService implements IService<Comment> {
     @Override
     public List<Comment> readAll() throws SQLException {
         List<Comment> comments = new ArrayList<>();
-        String query = "SELECT * FROM Comment";
+        String query = "SELECT * FROM comment";
         try (Statement st = cnx.createStatement();
              ResultSet rs = st.executeQuery(query)) {
             while (rs.next()) {
@@ -65,6 +65,29 @@ public class CommentService implements IService<Comment> {
                 );
                 comments.add(comment);
             }
+        }
+        return comments;
+    }
+
+    public List<Comment> readByPostId(int postId ) {
+        List<Comment> comments = new ArrayList<>();
+        String query = "SELECT * FROM comment WHERE post_id = ?";
+        try (PreparedStatement ps = cnx.prepareStatement(query)) {
+            ps.setInt(1, postId);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Comment comment = new Comment(
+                            rs.getInt("id"),
+                            rs.getInt("post_id"),
+                            rs.getString("author"),
+                            rs.getString("content"),
+                            rs.getTimestamp("created_at").toLocalDateTime()
+                    );
+                    comments.add(comment);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return comments;
     }

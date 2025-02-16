@@ -4,22 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2349ab79-d526-4b98-a7eb-75f3ac4cf467" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/entities/Comment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/entities/Post.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/main/TestJDBC.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/services/CommentService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/services/IService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/services/PostService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/utils/MyConnection.java" afterDir="false" />
+    <list default="true" id="2349ab79-d526-4b98-a7eb-75f3ac4cf467" name="Changes" comment="Initial commit: Set up Post and Comment services with database interactions">
+      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/CommentCrud.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/PostCrud.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/main/mainFx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/CommentCrud.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/PostCrud.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Comment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Post.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/TestJDBC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/TestJDBC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/CommentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/PostService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/PostService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,22 +28,38 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="CSS File" />
+        <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;aminemanai2003&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/aminemanai2003/HypertrophyPlusJAVA.git&quot;,
+    &quot;accountId&quot;: &quot;27604b7c-1bd6-48ee-be9d-ab1269041679&quot;
+  }
+}</component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="QODANA_PROBLEMS_VIEW_TAB" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
   <component name="ProjectId" id="2szCQzlK96S6gvl1LJt4NDySD05" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -53,11 +67,16 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Application.TestJDBC.executor&quot;: &quot;Run&quot;,
+    &quot;Application.mainFx.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Forum [javafx:run].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.workshop [org.openjfx:javafx-maven-plugin:0.0.8:run].executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Amine/Desktop/Random/Pidev3A30-main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Amine/Desktop/PIDEV3A2&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -66,7 +85,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.JavaFX&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -75,6 +94,57 @@
     ]
   }
 }</component>
+  <component name="RunManager" selected="Maven.Forum [javafx:run]">
+    <configuration name="TestJDBC" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.TestJDBC" />
+      <module name="Forum" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Forum [javafx:run]" type="MavenRunConfiguration" factoryName="Maven" temporary="true">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="cmdOptions" />
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="javafx:run" />
+              </list>
+            </option>
+            <option name="multimoduleDir" />
+            <option name="pomFileName" value="pom.xml" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="projectsCmdOptionValues">
+              <list />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Maven.Forum [javafx:run]" />
+        <item itemvalue="Application.TestJDBC" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -97,8 +167,26 @@
       <workItem from="1739487089250" duration="520000" />
       <workItem from="1739493559837" duration="1747000" />
       <workItem from="1739573801838" duration="968000" />
-      <workItem from="1739575148673" duration="1305000" />
+      <workItem from="1739575148673" duration="1793000" />
+      <workItem from="1739578386745" duration="608000" />
+      <workItem from="1739640735131" duration="5902000" />
+      <workItem from="1739650428300" duration="7817000" />
+      <workItem from="1739659251303" duration="2556000" />
+      <workItem from="1739708710352" duration="5915000" />
+      <workItem from="1739716193752" duration="36000" />
+      <workItem from="1739716239516" duration="4655000" />
+      <workItem from="1739721541835" duration="533000" />
+      <workItem from="1739723106449" duration="2052000" />
     </task>
+    <task id="LOCAL-00001" summary="Initial commit: Set up Post and Comment services with database interactions">
+      <option name="closed" value="true" />
+      <created>1739576542779</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1739576542780</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -114,6 +202,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial commit: Set up Post and Comment services with database interactions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial commit: Set up Post and Comment services with database interactions" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

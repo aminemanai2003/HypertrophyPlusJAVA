@@ -1,0 +1,44 @@
+/*
+ * Style for the AnchorPane
+ */
+/*.root {
+    -fx-background-color: #f4f4f4;
+}
+
+/* Style for Labels
+.label {
+    /* font size in pixels
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+/* Style for TextFields
+.text-field {
+
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 5;
+    -fx-padding: 5;
+    -fx-background-radius: 5;
+    -fx-font-size: 14;
+}
+
+/* Style for Buttons
+.button {
+    -fx-background-color: #007bff;
+    -fx-text-fill: white;
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #0056b3;
+}
+
+.button:pressed {
+    -fx-background-color: #004494;
+}*/

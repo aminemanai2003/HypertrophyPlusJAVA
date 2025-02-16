@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class Comment {
     private int id;
-    private int postId;
+    private int postId; // Store postId instead of Post object
     private String author;
     private String content;
     private LocalDateTime createdAt;

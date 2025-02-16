@@ -17,8 +17,8 @@ public class TestJDBC {
 
 
         // Create instances of entities
-        Post post = new Post(1, "poddst", "This is the content of my first post", LocalDateTime.now());
-        Comment comment = new Comment(2,2, "amddine", "comment", LocalDateTime.now());
+        Comment comment = new Comment(3,3,"au55th5or","co555ntent",LocalDateTime.now());
+
 
 
         try {
@@ -26,7 +26,7 @@ public class TestJDBC {
 
             // Test PostService: Insert post and verify
             System.out.println("Testing postService:");
-            commentService.delete(comment);
+            commentService.create(comment);
             System.out.println(commentService.readAll()); // Output all posts to verify insertion
 
 
